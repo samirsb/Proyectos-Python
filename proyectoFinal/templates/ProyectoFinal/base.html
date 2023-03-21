@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>
+			{% block title %}
+			{% endblock title %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Samira Bobes Photo Stock" />
+		<meta name="keywords" content="photo stock" />
+		<meta name="author" content="Samira Bobes" />
+
+		<!-- Facebook and Twitter integration -->
+		<meta property="og:title" content=""/>
+		<meta property="og:image" content=""/>
+		<meta property="og:url" content=""/>
+		<meta property="og:site_name" content=""/>
+		<meta property="og:description" content=""/>
+		<meta name="twitter:title" content="" />
+		<meta name="twitter:image" content="" />
+		<meta name="twitter:url" content="" />
+		<meta name="twitter:card" content="" />
+
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory \\ Tab icon-->
+		<link rel="shortcut icon" href="favicon.ico">
+
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Roboto:300,400' rel='stylesheet' type='text/css'>
+		
+		<!-- Animate.css -->
+		<link rel="stylesheet" href="{% static 'ProyectoFinal/css/animate.css' %}">
+		<!-- Icomoon Icon Fonts-->
+		<link rel="stylesheet" href="{% static 'ProyectoFinal/css/icomoon.css' %}">
+		<!-- Bootstrap  -->
+		<link rel="stylesheet" href="{% static 'ProyectoFinal/css/bootstrap.css' %}">
+		<!-- Style  -->
+		<link rel="stylesheet" href="{% static 'ProyectoFinal/css/style.css' %}">
+
+		<!-- Modernizr JS -->
+		<script src="{% static 'ProyectoFinal/js/modernizr-2.6.2.min.js' %}"></script>
+
+	</head>
+
+	<body>
+
+		<div class="box-wrap">
+			<header role="banner" id="fh5co-header">
+				<div class="container">
+					<nav class="navbar navbar-default">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="fh5co-navbar-brand">
+									<a class="fh5co-logo" href="index.html"><img src="{% static 'ProyectoFinal/images/brand-nav.png' %}" alt="Closest Logo"></a>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<ul class="nav text-center">
+									<li class="active"><a href="{% url 'index' %}"><span>Inicio</span></a></li>
+									<li><a href="{% url 'about' %}">Sobre mi</a></li>
+									<li><a href="{% url 'stock' %}">Stock</a></li>
+									<li><a href="{% url 'contact' %}">Contacto</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="social">
+									<li><a href="#"><i class="icon-twitter"></i></a></li>
+									<li><a href="#"><i class="icon-dribbble"></i></a></li>
+									<li><a href="https://www.instagram.com/samirab.ph/"><i class="icon-instagram"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</header>
+
+				{% block content %}
+				{% endblock content %}
+			
+			<footer id="footer" role="contentinfo">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center ">
+							<div class="footer-widget border">
+								<p class="pull-left"><small>&copy; Closest Free HTML5. All Rights Reserved.</small></p>
+								<p class="pull-right"><small> Designed by  <a href="http://freehtml5.co/" ta>freehtml5.co</a>  Images: <a href="https://unsplash.com/">Unsplash</a></small></p>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		
+		</div>
+
+		<!-- jQuery -->
+		<script src="{% static 'ProyectoFinal/js/jquery.min.js' %}"></script>
+		<!-- jQuery Easing -->
+		<script src="{% static 'ProyectoFinal/js/jquery.easing.1.3.js' %}"></script>
+		<!-- Bootstrap -->
+		<script src="{% static 'ProyectoFinal/js/bootstrap.min.js' %}"></script>
+		<!-- Waypoints -->
+		<script src="{% static 'ProyectoFinal/js/jquery.waypoints.min.js' %}"></script>
+		<!-- Main JS (Do not remove) -->
+		<script src="{% static 'ProyectoFinal/js/main.js' %}"></script>
+
+	</body>
+
+</html>
+

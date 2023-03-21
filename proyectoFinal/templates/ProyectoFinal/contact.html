@@ -1,0 +1,106 @@
+{% extends 'ProyectoFinal/base.html' %}
+
+{% load static %}
+
+{% block title%}
+	Contacto - SamiraB
+{% endblock %}
+
+{% block content %}
+
+	<section id="intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
+						<div class="intro animate-box">
+							<h1>Contactame!</h1>
+							<h2>Debajo puedes dejar cualquier duda o inquietud que tengas</h2>
+						</div>
+					</div>
+				</div>
+			<div>
+		</section>
+
+		<main id="main">
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2 animate-box">
+					
+					<form action="/contacto/" method="POST">
+						{% csrf_token %}
+
+						<div class="form-group row">
+							<div class="col-md-6 field">
+								<label for="firstname">Nombre</label>
+								{{form.name}}
+							</div>
+							<div class="col-md-6 field">
+								<label for="lastname">Apellido</label>
+								{{form.lastname}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-6 field">
+								<label for="email">Correo</label>
+								{{form.email}}
+							</div>
+							<div class="col-md-6 field">
+								<label for="phone">Telefono</label>
+								{{form.phone}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-12 field">
+								<label for="message">Servicio</label>
+								{{form.userServices}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-12 field">
+								<label for="message">Mensaje</label>
+								{{form.message.as_textarea}}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-12 field">
+								<input type="submit" id="submit" class="btn btn-primary" value="Enviar">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+
+		<section id="services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 animate-box">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon-command"></i>
+							</div>
+							<h2>Brand Identity</h2>	
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+						</div>
+					</div>
+					<div class="col-md-4 animate-box">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon-drop2"></i>
+							</div>
+							<h2>Web Design &amp; UI</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+						</div>
+					</div>
+					<div class="col-md-4 animate-box">
+						<div class="service">
+							<div class="service-icon">
+								<i class="icon-anchor"></i>
+							</div>
+							<h2>Development &amp; CMS</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+{% endblock %}
