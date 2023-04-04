@@ -26,7 +26,7 @@
 		<meta name="twitter:card" content="" />
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory \\ Tab icon-->
-		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="shortcut icon" href="{% static 'ProyectoFinal/images/camera.png' %}" type="iamge/png">
 
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Roboto:300,400' rel='stylesheet' type='text/css'>
 		
@@ -51,7 +51,7 @@
 				<div class="container">
 					<nav class="navbar navbar-default">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<div class="fh5co-navbar-brand">
 									<a class="fh5co-logo" href="index.html"><img src="{% static 'ProyectoFinal/images/brand-nav.png' %}" alt="Closest Logo"></a>
 								</div>
@@ -64,14 +64,27 @@
 									<li><a href="{% url 'contact' %}">Contacto</a></li>
 								</ul>
 							</div>
-							<div class="col-md-3">
+
+							{% if user.is_authenticated %}
+								<div class="col-md-2">
+									<a href="{% url 'logout' %}">Cerrar sesión</a>
+								</div>
+							{% else %}
+								<div class="col-md-2">
+									<a href="{% url 'signup' %}">Registrarse</a>
+								</div>
+								<div class="col-md-2">
+									<a href="{% url 'signin' %}">Iniciar sesión</a>
+								</div>
+							{% endif %}
+
+							<div class="col-md-2">
 								<ul class="social">
 									<li><a href="#"><i class="icon-twitter"></i></a></li>
 									<li><a href="#"><i class="icon-dribbble"></i></a></li>
 									<li><a href="https://www.instagram.com/samirab.ph/"><i class="icon-instagram"></i></a></li>
 								</ul>
 							</div>
-						</div>
 					</nav>
 				</div>
 			</header>

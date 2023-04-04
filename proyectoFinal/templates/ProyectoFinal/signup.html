@@ -1,0 +1,40 @@
+{% extends 'ProyectoFinal/base.html' %}
+
+{% load static %}
+
+{% block title%}
+	Signup - SamiraB
+{% endblock %}
+
+{% block content %}
+
+	<section id="intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
+						<div class="intro animate-box">
+							<h1>SamiraB</h1>
+							<h2>Inicia sesión</h2>
+						</div>
+					</div>
+				</div>
+			<div>
+		</section>
+
+		<main id="main">
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2 animate-box">
+					<form method="POST">
+						{% csrf_token %}
+						{{form.as_p}}
+						<button>
+							Ingresar
+						</button>
+						{{error}}
+					</form>
+				</div>
+			</div>
+		</main>
+
+
+{% endblock %}

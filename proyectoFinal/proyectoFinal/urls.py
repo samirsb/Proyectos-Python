@@ -1,28 +1,16 @@
-"""proyectoFinal URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-
-    
-"""
 from django.contrib import admin
 from django.urls import path
-from proyectoFinal.views import saludo, today, name, frontend
+from SBFotografia.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("main/", saludo),
-    path("today/", today),
-    path("name/<name>", name),
-    path("frontendHTML", frontend)
+    path("", index, name="index"), 
+    path("sobremi/", about, name="about"),
+    path("stock/", stock, name="stock"),
+    path("contacto/", contact, name="contact"),
+    path("stockSearch/", stockSearch, name="stockSearch"),
+    path("signup/", signup, name="signup"),
+    path("perfil/", profile, name="profile"),
+    path("logout/", signout, name="logout"),
+    path("signin/", signin, name="signin")
 ]
