@@ -60,7 +60,9 @@
 								<ul class="nav text-center">
 									<li class="active"><a href="{% url 'index' %}"><span>Inicio</span></a></li>
 									<li><a href="{% url 'about' %}">Sobre mi</a></li>
-									<li><a href="{% url 'stock' %}">Stock</a></li>
+									{% if user.is_authenticated %}
+										<li><a href="{% url 'stock' %}">Stock</a></li>
+									{% endif %}
 									<li><a href="{% url 'contact' %}">Contacto</a></li>
 								</ul>
 							</div>
