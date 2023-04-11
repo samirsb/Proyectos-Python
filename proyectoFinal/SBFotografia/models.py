@@ -1,13 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 #Each field is specified as a class attribute, and each attribute maps to a database column.
 
-class UserData(models.Model):
+class Profile(models.Model):
+        user = models.OneToOneField(User, on_delete=models.CASCADE)
         userName = models.CharField(max_length=30)
         userLastname = models.CharField(max_length=30)
         userPhone = models.CharField(max_length=10)
         userEmail = models.EmailField()
         about = models.CharField(max_length=1000)
+        image = models.ImageField(null=True, blank=True, default='default.jpg', upload_to='profilePics')
         
 
 class Contact(models.Model):

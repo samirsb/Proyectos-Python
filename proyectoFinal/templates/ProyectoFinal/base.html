@@ -38,6 +38,8 @@
 		<link rel="stylesheet" href="{% static 'ProyectoFinal/css/bootstrap.css' %}">
 		<!-- Style  -->
 		<link rel="stylesheet" href="{% static 'ProyectoFinal/css/style.css' %}">
+		
+		<link rel="stylesheet" href="{% static 'ProyectoFinal/js/jquery.min.js' %}">
 
 		<!-- Modernizr JS -->
 		<script src="{% static 'ProyectoFinal/js/modernizr-2.6.2.min.js' %}"></script>
@@ -60,33 +62,38 @@
 								<ul class="nav text-center">
 									<li class="active"><a href="{% url 'index' %}"><span>Inicio</span></a></li>
 									<li><a href="{% url 'about' %}">Sobre mi</a></li>
-									{% if user.is_authenticated %}
-										<li><a href="{% url 'stock' %}">Stock</a></li>
-									{% endif %}
 									<li><a href="{% url 'contact' %}">Contacto</a></li>
+									{% if user.is_authenticated %}
+									<li><a href="{% url 'stock' %}">Stock</a></li>
+									{% endif %}
 								</ul>
 							</div>
-
-							{% if user.is_authenticated %}
-								<div class="col-md-2">
-									<a href="{% url 'logout' %}">Cerrar sesión</a>
-								</div>
-							{% else %}
-								<div class="col-md-2">
-									<a href="{% url 'signup' %}">Registrarse</a>
-								</div>
-								<div class="col-md-2">
-									<a href="{% url 'signin' %}">Iniciar sesión</a>
-								</div>
-							{% endif %}
-
-							<div class="col-md-2">
+							<div class="col-md-3">
+									{% if user.is_authenticated %}
+									<a href="{% url 'profile' %}" class="access">Mi perfil</a>
+									<img class="avatar" src="{{ user.profile.image.url }}" />
+									{% endif %}
+							</div>
+							<div class="col-md-1">
 								<ul class="social">
-									<li><a href="#"><i class="icon-twitter"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble"></i></a></li>
 									<li><a href="https://www.instagram.com/samirab.ph/"><i class="icon-instagram"></i></a></li>
 								</ul>
 							</div>
+						</div>
+						<div class="row custom-row">
+							{% if user.is_authenticated %}
+							<div class="access">
+								<a href="{% url 'logout' %}" >Cerrar sesión</a>
+							</div>
+							{% else %}
+							<div class="access">
+								<a href="{% url 'signup' %}">Registrarse</a>
+							</div>
+							<div class="access">
+								<a href="{% url 'signin' %}">Iniciar sesión</a>
+							</div>
+							{% endif %}
+						</div>
 					</nav>
 				</div>
 			</header>

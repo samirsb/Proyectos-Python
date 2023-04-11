@@ -53,7 +53,32 @@ def signin(request):
             return redirect('index')
 
 def profile(request):
-    return render(request, "ProyectoFinal/profile.html", {'form': UserData})
+    if request.method == "POST": 
+        profileData = ProfileForm(request.POST)
+
+        if profileData.is_valid():
+            data = Profile(userName = ['userName'], userLastname = ['userLastname'], userPhone = ['userPhone'], 
+                            userEmail = ['userEmail'], about = ['about'])
+            data.save()
+            return render(request, "ProyectoFinal/profile.html", {'form': profileData})
+
+    else:
+        profileData = ProfileForm()
+    return render(request, "ProyectoFinal/profile.html", {'form': profileData})
+
+# def profileImage(request):
+#     if request.method == 'POST':
+#         userImage = ImageForm(request.POST)
+#         if userImage.is_valid():
+#             picture = Profile(image = ['image'])
+#             picture.save()
+#             img_obj = userImage.instance
+#             return render(request, "ProyectoFinal/profile.html", {'form': userImage, 'img_obj': img_obj})
+#         else:
+#             return render(request, "ProyectoFinal/profile.html", {'form': userImage})
+#     else:
+#         userImage = ImageForm()
+#         return render(request, "ProyectoFinal/profile.html", {'form': userImage})
 
 def stockSearch(request):
     if request.GET['inputStock']:
@@ -75,9 +100,8 @@ def contact(request):
 
         if form.is_valid():
             cleanData = form.cleaned_data
-            print(cleanData)
-            contact = Contact(name = cleanData['name'], lastname = cleanData['lastname'], phone = cleanData['phone'], 
-                              email = cleanData['email'], message = cleanData['message'], userServices = cleanData['userServices'])
+            contact = Contact(Cname = cleanData['Cname'], Clastname = cleanData['Clastname'], Cphone = cleanData['Cphone'], 
+                              Cemail = cleanData['Cemail'], message = cleanData['message'], userServices = cleanData['userServices'])
             contact.save()
             return render(request, "ProyectoFinal/contact.html", {
                 'form':form,

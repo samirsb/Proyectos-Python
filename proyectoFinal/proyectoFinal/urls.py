@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from SBFotografia.views import *
 
 urlpatterns = [
@@ -12,5 +14,11 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("perfil/", profile, name="profile"),
     path("logout/", signout, name="logout"),
-    path("signin/", signin, name="signin")
+    path("signin/", signin, name="signin"),
+    # path("fotoPerfil/", profileImage, name="profileImg")
 ]
+
+if settings.DEBUG == True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
