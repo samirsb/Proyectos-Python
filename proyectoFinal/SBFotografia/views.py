@@ -55,30 +55,20 @@ def signin(request):
 def profile(request):
     if request.method == "POST": 
         profileData = ProfileForm(request.POST)
-
         if profileData.is_valid():
-            data = Profile(userName = ['userName'], userLastname = ['userLastname'], userPhone = ['userPhone'], 
-                            userEmail = ['userEmail'], about = ['about'])
+            print(profileData)
+            data = Profile(userName = request.POST['userName'], 
+                           userLastname = request.POST['userLastname'], 
+                           userPhone = request.POST['userPhone'], 
+                            userEmail = request.POST['userEmail'], 
+                            about = request.POST['about'], 
+                            user_id = request.user.id )
             data.save()
             return render(request, "ProyectoFinal/profile.html", {'form': profileData})
 
     else:
         profileData = ProfileForm()
     return render(request, "ProyectoFinal/profile.html", {'form': profileData})
-
-# def profileImage(request):
-#     if request.method == 'POST':
-#         userImage = ImageForm(request.POST)
-#         if userImage.is_valid():
-#             picture = Profile(image = ['image'])
-#             picture.save()
-#             img_obj = userImage.instance
-#             return render(request, "ProyectoFinal/profile.html", {'form': userImage, 'img_obj': img_obj})
-#         else:
-#             return render(request, "ProyectoFinal/profile.html", {'form': userImage})
-#     else:
-#         userImage = ImageForm()
-#         return render(request, "ProyectoFinal/profile.html", {'form': userImage})
 
 def stockSearch(request):
     if request.GET['inputStock']:
@@ -111,3 +101,16 @@ def contact(request):
         form = ContactForm()     
     return render(request, "ProyectoFinal/contact.html", {"form":form})
 
+# def profileImage(request):
+#     if request.method == 'POST':
+#         userImage = ImageForm(request.POST)
+#         if userImage.is_valid():
+#             picture = Profile(image = ['image'])
+#             picture.save()
+#             img_obj = userImage.instance
+#             return render(request, "ProyectoFinal/profile.html", {'form': userImage, 'img_obj': img_obj})
+#         else:
+#             return render(request, "ProyectoFinal/profile.html", {'form': userImage})
+#     else:
+#         userImage = ImageForm()
+#         return render(request, "ProyectoFinal/profile.html", {'form': userImage})

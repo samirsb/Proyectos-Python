@@ -1,5 +1,4 @@
 from django import forms
-from .models import Profile
 
 class ProfileForm(forms.Form):
         userName = forms.CharField(max_length=30)
@@ -7,11 +6,6 @@ class ProfileForm(forms.Form):
         userPhone = forms.CharField(max_length=10)
         userEmail = forms.EmailField()
         about = forms.CharField(max_length=1000)
-
-# class ImageForm(forms.ModelForm):
-#       class Meta: 
-#            model = Profile
-#            fields = ('image', )
 
 class ContactForm(forms.Form):
     Cname = forms.CharField(max_length=30)
