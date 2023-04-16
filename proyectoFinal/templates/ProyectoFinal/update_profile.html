@@ -18,7 +18,9 @@
 							<img class="img-circle" src="{{ user.profile.image.url }}" />
 						</div>
 						<div class="col-md-9">
-							<p> Hola {{user.username}}! <p>
+							<p> Hola {{user.username}}! </p>
+							<hr>
+							<p><a href="{% url 'reset_password' %}">Reestablecer contraseña</a></p>
 						</div>
 					</div>
 				</div> 

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import login, logout, authenticate
 from SBFotografia.forms import *
 from SBFotografia.models import *
@@ -51,6 +53,10 @@ def signin(request):
         else: 
             login(request, user)
             return redirect('index')
+        
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('index')
 
 def profile(request):
     if request.method == "POST": 

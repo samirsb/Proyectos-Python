@@ -15,7 +15,8 @@ urlpatterns = [
     path("logout/", signout, name="logout"),
     path("signin/", signin, name="signin"),
     path("perfil/", profile, name="profile"),
-    path("actualizar-perfil/", update_profile, name="update_profile")
+    path("actualizar-perfil/", update_profile, name="update_profile"),
+    path("reestablecer-contraseña", PasswordsChangeView.as_view(template_name="ProyectoFinal/reset_password.html"), name="reset_password")
     # path("fotoPerfil/", profileImage, name="profileImg")
 ]
 
