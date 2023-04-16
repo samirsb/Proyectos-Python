@@ -1,11 +1,23 @@
 from django import forms
+from SBFotografia.models import *
 
-class ProfileForm(forms.Form):
-        userName = forms.CharField(max_length=30)
-        userLastname = forms.CharField(max_length=30)
-        userPhone = forms.CharField(max_length=10)
-        userEmail = forms.EmailField()
-        about = forms.CharField(max_length=1000)
+class ProfileForm(forms.ModelForm):
+    userName = forms.CharField(max_length=30)
+    userLastname = forms.CharField(max_length=30)
+    userPhone = forms.CharField(max_length=10)
+    userEmail = forms.EmailField()
+    about = forms.CharField(max_length=1000)
+
+    class Meta:
+        model = Profile
+        fields = [
+            'userName',
+            'userLastname',
+            'userPhone',
+            'userEmail',            
+            'about'
+        ]
+
 
 class ContactForm(forms.Form):
     Cname = forms.CharField(max_length=30)

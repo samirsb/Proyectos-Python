@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -56,19 +56,25 @@ def profile(request):
     if request.method == "POST": 
         profileData = ProfileForm(request.POST)
         if profileData.is_valid():
-            print(profileData)
-            data = Profile(userName = request.POST['userName'], 
-                           userLastname = request.POST['userLastname'], 
-                           userPhone = request.POST['userPhone'], 
+            data = Profile( userName = request.POST['userName'], 
+                            userLastname = request.POST['userLastname'], 
+                            userPhone = request.POST['userPhone'], 
                             userEmail = request.POST['userEmail'], 
                             about = request.POST['about'], 
                             user_id = request.user.id )
             data.save()
             return render(request, "ProyectoFinal/profile.html", {'form': profileData})
-
     else:
         profileData = ProfileForm()
-    return render(request, "ProyectoFinal/profile.html", {'form': profileData})
+        return render(request, "ProyectoFinal/profile.html", {'form': profileData, 'error': "Debe estar registrado para ingresar a esta pagina"})
+
+def update_profile(request):
+    current_user = get_object_or_404(Profile, id = request.user.id)
+    form = ProfileForm(request.POST or None, instance=current_user) 
+    if request.method == "POST":
+        if form.is_valid():
+           form.save()
+    return render(request, "ProyectoFinal/update_profile.html", {'form': form})
 
 def stockSearch(request):
     if request.GET['inputStock']:
@@ -87,14 +93,13 @@ def stockSearch(request):
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
-
         if form.is_valid():
-            cleanData = form.cleaned_data
-            contact = Contact(Cname = cleanData['Cname'], Clastname = cleanData['Clastname'], Cphone = cleanData['Cphone'], 
-                              Cemail = cleanData['Cemail'], message = cleanData['message'], userServices = cleanData['userServices'])
+            cleanContactForm = form.cleaned_data
+            contact = Contact(Cname = cleanContactForm['Cname'], Clastname = cleanContactForm['Clastname'], Cphone = cleanContactForm['Cphone'], 
+                              Cemail = cleanContactForm['Cemail'], message = cleanContactForm['message'], userServices = cleanContactForm['userServices'])
             contact.save()
             return render(request, "ProyectoFinal/contact.html", {
-                'form':form,
+                'form': form,
                 'send': "Su mensaje ha sido enviado"
                 })
     else:

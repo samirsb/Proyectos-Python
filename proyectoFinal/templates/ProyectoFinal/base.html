@@ -70,7 +70,7 @@
 							</div>
 							<div class="col-md-3">
 									{% if user.is_authenticated %}
-									<a href="{% url 'profile' %}" class="access">Mi perfil</a>
+									<a href="{% url 'update_profile' %}" class="access">Mi perfil</a>
 									<img class="avatar" src="{{ user.profile.image.url }}" />
 									{% endif %}
 							</div>

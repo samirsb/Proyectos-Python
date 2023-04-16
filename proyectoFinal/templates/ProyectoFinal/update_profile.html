@@ -1,0 +1,87 @@
+{% extends 'ProyectoFinal/base.html' %}
+
+{% load static %}
+
+{% block title%}
+	Actualizar perfil - SamiraB
+{% endblock %}
+
+{% block content %}
+
+	<section id="intro">
+		<div class="container">
+			<div class="row">
+				<div class="intro animate-box">  
+					<h1 >Actualizar perfil<h1> 
+					<div class="row">
+						<div class="col-md-3">
+							<img class="img-circle" src="{{ user.profile.image.url }}" />
+						</div>
+						<div class="col-md-9">
+							<p> Hola {{user.username}}! <p>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</section>
+
+	<main id="main">
+		<div class="container">
+			<div class="col-md-8 col-md-offset-2 animate-box">
+				
+				<form method="POST">
+					{% csrf_token %}
+
+					<div class="form-group row">
+						<div class="col-md-6 field">
+							<label for="firstname">Nombre</label>
+							{{form.userName}}
+						</div>
+						<div class="col-md-6 field">
+							<label for="lastname">Apellido</label>
+							{{form.userLastname}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6 field">
+							<label for="email">Correo</label>
+							{{form.userEmail}}
+						</div>
+						<div class="col-md-6 field">
+							<label for="phone">Telefono</label>
+							{{form.userPhone}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12 field">
+							<label for="message">Sobre ti</label>
+							{{form.about.as_textarea}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12 field">
+							<input type="submit" id="save" class="btn btn-primary" value="Guardar">
+						</div>
+					</div>
+				</form>
+
+				{% comment %} <form method="POST" action="{% url 'profileImg' %}" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div>
+						<input type="hidden" name="user"  id="id_user" value="{{user.id}}" />
+						<input type="file" name="photo">
+						<button type="submit">Cambiar foto de perfil</button>
+					</div>
+				</form>
+				
+				{% if img_obj %}
+				<h3>Foto de perfil modificada : {{img_obj.title}}</h3>
+				<img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+				{% endif %} {% endcomment %}
+
+			</div>
+		</div>
+	</main>
+
+{% endblock %}

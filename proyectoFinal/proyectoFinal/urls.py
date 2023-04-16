@@ -12,9 +12,10 @@ urlpatterns = [
     path("contacto/", contact, name="contact"),
     path("stockSearch/", stockSearch, name="stockSearch"),
     path("signup/", signup, name="signup"),
-    path("perfil/", profile, name="profile"),
     path("logout/", signout, name="logout"),
     path("signin/", signin, name="signin"),
+    path("perfil/", profile, name="profile"),
+    path("actualizar-perfil/", update_profile, name="update_profile")
     # path("fotoPerfil/", profileImage, name="profileImg")
 ]
 
