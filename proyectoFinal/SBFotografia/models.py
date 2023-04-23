@@ -10,7 +10,7 @@ class Profile(models.Model):
         userPhone = models.CharField(max_length=10)
         userEmail = models.EmailField()
         about = models.CharField(max_length=1000)
-        image = models.ImageField(null=True, blank=True, default='default.jpg', upload_to='profilePics')
+        image = models.ImageField(null=True, blank=True, default='default.jpeg', upload_to='profilePics')
         
 
 class Contact(models.Model):

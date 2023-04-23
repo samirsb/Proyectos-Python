@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ("about", models.CharField(max_length=1000)),
                 (
                     "image",
-                    models.ImageField(default="default.jpg", upload_to="profilePics"),
+                    models.ImageField(default="default.jpeg", upload_to="profilePics"),
                 ),
                 (
                     "user",

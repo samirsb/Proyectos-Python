@@ -60,15 +60,17 @@ class PasswordsChangeView(PasswordChangeView):
 
 def profile(request):
     if request.method == "POST": 
-        profileData = ProfileForm(request.POST)
+        profileData = ProfileForm(request.POST, request.FILES)
         if profileData.is_valid():
             data = Profile( userName = request.POST['userName'], 
                             userLastname = request.POST['userLastname'], 
                             userPhone = request.POST['userPhone'], 
                             userEmail = request.POST['userEmail'], 
                             about = request.POST['about'], 
-                            user_id = request.user.id )
+                            user_id = request.user.id ,
+                            image = request.FILES['image'])
             data.save()
+
             return render(request, "ProyectoFinal/profile.html", {'form': profileData})
     else:
         profileData = ProfileForm()
@@ -76,11 +78,15 @@ def profile(request):
 
 def update_profile(request):
     current_user = get_object_or_404(Profile, id = request.user.id)
-    form = ProfileForm(request.POST or None, instance=current_user) 
     if request.method == "POST":
+        form = ProfileForm(data = request.POST or None, files = request.FILES, instance=current_user)
         if form.is_valid():
-           form.save()
-    return render(request, "ProyectoFinal/update_profile.html", {'form': form})
+            form.save()
+        return render(request, "ProyectoFinal/update_profile.html", {'form':form})
+    else:
+        form = ProfileForm(data = request.POST or None, instance=current_user)
+        img = Profile.objects.all()
+        return render(request, "ProyectoFinal/update_profile.html", {'img':img, 'form': form})
 
 def stockSearch(request):
     if request.GET['inputStock']:
@@ -111,17 +117,3 @@ def contact(request):
     else:
         form = ContactForm()     
     return render(request, "ProyectoFinal/contact.html", {"form":form})
-
-# def profileImage(request):
-#     if request.method == 'POST':
-#         userImage = ImageForm(request.POST)
-#         if userImage.is_valid():
-#             picture = Profile(image = ['image'])
-#             picture.save()
-#             img_obj = userImage.instance
-#             return render(request, "ProyectoFinal/profile.html", {'form': userImage, 'img_obj': img_obj})
-#         else:
-#             return render(request, "ProyectoFinal/profile.html", {'form': userImage})
-#     else:
-#         userImage = ImageForm()
-#         return render(request, "ProyectoFinal/profile.html", {'form': userImage})
