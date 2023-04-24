@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordChangeView
@@ -15,8 +16,24 @@ def index(request):
 def about(request):
     return render(request, "ProyectoFinal/about.html")
 
-def stock(request):
-    return render(request, "ProyectoFinal/stock.html")
+class StockView(ListView):
+    model = Stock
+    template_name = "ProyectoFinal/stock.html"
+
+def add_stock(request):
+    # current_user = get_object_or_404(Stock, autor_id = request.user.id)
+    # print(current_user)
+    if request.method == "POST":
+        form = StockForm(data = request.POST or None, files = request.FILES)
+        form_test = form.save(commit=False)
+        form_test.autor = request.user
+        if form.is_valid():
+            form.save()
+            return render(request, "ProyectoFinal/stock.html", {'form': form})
+    else:
+        form = StockForm()
+        return render(request, "ProyectoFinal/add_stock.html", {'form': form})
+
 
 def signup(request):
     if request.method == "GET":

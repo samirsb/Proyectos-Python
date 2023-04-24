@@ -2,7 +2,6 @@ from django import forms
 from SBFotografia.models import *
 
 class ProfileForm(forms.ModelForm):
-
     class Meta:
         model = Profile
         fields = [
@@ -29,3 +28,12 @@ class ContactForm(forms.Form):
     
 class StockCategory(forms.Form):
     category = forms.CharField(max_length=40)
+
+class StockForm(forms.ModelForm):
+    class Meta: 
+        model = Stock
+        fields = ['title', 
+                  'category', 
+                  'description', 
+                  'image'
+                ]

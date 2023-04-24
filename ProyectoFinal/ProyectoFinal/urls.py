@@ -8,7 +8,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index, name="index"), 
     path("sobremi/", about, name="about"),
-    path("stock/", stock, name="stock"),
+    #path("stock/", stock, name="stock"),
+    path("stock/", StockView.as_view(), name="stock"),
+    path("agregar-stock/", add_stock, name="add_stock"),
     path("contacto/", contact, name="contact"),
     path("stockSearch/", stockSearch, name="stockSearch"),
     path("signup/", signup, name="signup"),
@@ -17,7 +19,6 @@ urlpatterns = [
     path("perfil/", profile, name="profile"),
     path("actualizar-perfil/", update_profile, name="update_profile"),
     path("reestablecer-contraseña", PasswordsChangeView.as_view(template_name="ProyectoFinal/reset_password.html"), name="reset_password")
-    # path("fotoPerfil/", profileImage, name="profileImg")
 ]
 
 if settings.DEBUG == True:

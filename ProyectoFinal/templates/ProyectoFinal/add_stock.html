@@ -1,0 +1,63 @@
+{% extends 'ProyectoFinal/base.html' %}
+
+{% load static %}
+
+{% block title%}
+	stock - SamiraB
+{% endblock %}
+
+{% block content %}
+
+		<section id="intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
+						<div class="intro animate-box">
+							<h1>Carga tus fotos</h1>
+						</div>
+					</div>
+				</div>
+			<div>
+		</section>
+
+		<section id="addStock">
+			<div class="container">
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+			
+					<div class="form-group row">
+						<div class="col-md-12 field">
+							<label for="firstname">Titulo</label>
+							{{form.title}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12 field">
+							<label for="lastname">Categoria</label>
+							{{form.category}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12 field">
+							<label for="email">Descripcion</label>
+							{{form.description.as_textarea}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-2 field">
+							<label>Foto</label>
+						</div>
+						<div class="col-md-10 field">
+							{{form.image}}
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12 field">
+							<input type="submit" id="save" class="btn btn-primary" value="Cargar">
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</section>
+{% endblock content %}

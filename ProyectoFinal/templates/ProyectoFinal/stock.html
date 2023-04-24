@@ -14,83 +14,53 @@
 					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
 						<div class="intro animate-box">
 							<h1>Stock</h1>
-							<h2>Bienvenido a mi banco de imagenes</h2>
-							<p>Filtrar por la categoria de tu preferencia</p>
+							<h2>Bienvenido al banco de imagenes</h2>
+							<p>Filtra por la categoria de tu preferencia</p>
 						</div>
 					</div>
 				</div>
 			<div>
 		</section>
-
-		<form action="/stockSearch/" method="GET">
-			{% csrf_token %}
-			
+		
+		<hr>
+		<div class="container">
 			<div class="form-group row">
-				<div class="col-md-12 field">
-					<label for="category">Categoria</label>
-					<input type='text' name='inputStock' id='inputStock' />
+				<div class="col-md-9 field">
+					
 				</div>
-				<div class="col-md-12 field">
-					<input type="submit" id="submit" class="btn btn-primary" value="Enviar">
-				</div>
-			</div>
-		</form>
-
-		<section id="stock">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<h2>{{category}}</h2>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-drop2"></i>
-							</div>
-							<h2>Web Design &amp; UI</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-anchor"></i>
-							</div>
-							<h2>Development &amp; CMS</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-						</div>
-					</div>
-
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-command"></i>
-							</div>
-							<h2>Brand Identity</h2>	
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-drop2"></i>
-							</div>
-							<h2>Web Design &amp; UI</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="service">
-							<div class="service-icon">
-								<i class="icon-anchor"></i>
-							</div>
-							<h2>Development &amp; CMS</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-						</div>
-					</div>
+				<div class="col-md-3 field">
+					<button><a href="{% url 'add_stock' %}">Agregar</a></button>
 				</div>
 			</div>
-		</section>
+		</div>
+		<hr>
+		<ul>
+			{% for items in object_list %}
+			<a onclick="toggle({{items.id}});" />
+
+			<div>
+				<li>
+					<h3>{{items.title}} - {{items.autor}}</h3>
+					<div class="add" id='{{items.id}}' hidden>
+						<p>{{items.description}}</p>
+						<img src={{items.image.url}} width=300 height=200/>
+					</div>
+				</li>
+			</div>
+
+
+			{% endfor %}
+		</ul>
+		<script>
+			let toggle = (itemId) => {
+			let element = document.getElementById(itemId);
+			let hidden = element.getAttribute("hidden");
+		
+			if (hidden) {
+				element.removeAttribute("hidden");
+			} else {
+				element.setAttribute("hidden", "hidden");
+			}
+			}
+		</script>
 {% endblock content %}

@@ -11,6 +11,9 @@ class Profile(models.Model):
         userEmail = models.EmailField()
         about = models.CharField(max_length=1000)
         image = models.ImageField(null=True, blank=True, default='default.jpeg', upload_to='profilePics')
+
+        def __str__(self):
+                return self.user
         
 
 class Contact(models.Model):
@@ -26,9 +29,18 @@ class Contact(models.Model):
                                                 ('AL', "Todos")
                                         ],
                                         default='AL')
+        def __str__(self):
+                return self.Cname, self.Clastname
         
-class StockCategory(models.Model):
+class Stock(models.Model):
+        title = models.CharField(max_length=80)
         category = models.CharField(max_length=40)
+        description = models.TextField(blank=True)
+        autor = models.ForeignKey(User, on_delete=models.CASCADE)
+        creationDate = models.DateTimeField(auto_now_add=True)
+        image = models.ImageField(upload_to='stockPhotos')
         
         def __str__(self):
-                return self.category
+                return self.title + " - by" +  self.autor.username
+        
+        
